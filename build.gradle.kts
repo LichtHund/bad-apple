@@ -1,4 +1,6 @@
-import dev.triumphteam.helper.*
+import dev.triumphteam.helper.MinecraftVersion
+import dev.triumphteam.helper.compileOnly
+import dev.triumphteam.helper.paper
 
 plugins {
     java
@@ -17,13 +19,15 @@ dependencies {
     compileOnly(paper(MinecraftVersion.V1_18_1))
 }
 
+// Using my gradle plugin to generate the plugin.yml file for me.
+// I know you said no libs, and *technically* it's not a lib, but if you say it's not allowed I can move it to the resources.
 bukkit {
     name = "BadApplePlugin"
     apiVersion = "1.18"
 
     commands {
         command("badapple") {
-            description = "Plays the Bad Apple video"
+            description = "Basic commands for the Bad Apple video."
             permission = "video.badapple"
         }
     }

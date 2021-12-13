@@ -9,13 +9,13 @@ import org.bukkit.plugin.java.JavaPlugin;
 @BukkitMain
 public final class BadApple extends JavaPlugin {
 
-    private final VideoManager videoManager = new VideoManager();
-
     @Override
     public void onEnable() {
-        final PluginCommand badAppleCommand = getCommand("badapple");
+        final BadAppleCommand badAppleCommand = new BadAppleCommand(new VideoManager(this));
+        final PluginCommand command = getCommand("badapple");
         // Throws is the command is not found, which should never happen.
-        if (badAppleCommand == null) throw new IllegalStateException("Could not find bad apple command.");
-        badAppleCommand.setExecutor(new BadAppleCommand(videoManager));
+        if (command == null) throw new IllegalStateException("Could not find bad apple command.");
+        command.setExecutor(badAppleCommand);
+        command.setTabCompleter(badAppleCommand);
     }
 }
